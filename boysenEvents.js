@@ -9,6 +9,6 @@ boysenEvents.js
 chrome.browserAction.onClicked.addListener(function(tab) {
   
   window.alert("Welcome to Boysen");
-  chrome.tabs.executeScript(null, {file: "boysenInsertions.js"});
+  chrome.tabs.executeScript(null, {file: "boysenDom.js"});
 
 });
