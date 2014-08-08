@@ -9,6 +9,7 @@ boysenDom.js
 
 //parseDom used to parse the entire DOM and add the appropriate borders
 function parseDom(){
+	console.log("parseDom");
 	var all = document.getElementsByTagName("*");
 	this.red = "1px solid red";
 	this.blue = "1px solid blue";
@@ -17,7 +18,7 @@ function parseDom(){
 	     // Do something with the element here
 	     var currentElement = all[i];
 	     var numChildren = currentElement.childNodes.length;
-	     
+	     console.log(currentElement);
 	     if(numChildren > 3){
 	     	currentElement.style.border = this.red;
 	     }
@@ -30,10 +31,14 @@ function parseDom(){
 	}
 }
 
+//showBox signals the content script to show the box
+function showBox(){
+	chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+	  chrome.tabs.sendMessage(tabs[0].id, {action: "init"}, function(response) {
+	    console.log(response.reply);
+	  });
+	});
+}
+
 parseDom();
-//Send message to content scriptchrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-  chrome.tabs.sendMessage(tabs[0].id, {action: "init"}, function(response) {
-    console.log(response.reply);
-  });
-});
+showBox();

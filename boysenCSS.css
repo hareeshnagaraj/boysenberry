@@ -1,3 +1,22 @@
 .boysenBorder{
 	border:1px solid red;
 }
+.boysenWrapper{
+	z-index: 2147483647;
+	position: fixed;
+	width:400px;
+	height:500px;
+	background-color: rgba(241,241,241,0.8);
+	right:20px;
+	top:20px;
+	display: none;
+	overflow-x:hidden; 
+}
+#boysenWrapperTitle{
+	color:#c2406d;
+	text-align: left;
+}
+#boysenWrapperTitle > div{
+	margin:10px;
+	font-size: 20px;
+}
