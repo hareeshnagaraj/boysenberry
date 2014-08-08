@@ -1,0 +1,23 @@
+/*
+  
+  Manifest file for boysenberry
+  https://github.com/hareeshnagaraj/boysenberry
+  By Hareesh Nagaraj & Dheeraj Manjunath
+
+*/
+{
+  "manifest_version": 2,
+
+  "name": "boysenberry",
+  "description": "quick and dirty dev tools",
+  "version": "1.0",
+
+  "background":{
+      "scripts":["boysenEvents.js"],
+      "persistent":true
+    },
+
+  "browser_action": {
+    "default_icon": "boysenberry_logo.png"
+  }
+}
