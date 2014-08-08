@@ -6,7 +6,12 @@ boysenDom.js
 	Add borders to all elements
 
 */
-document.body.style.backgroundColor="red";
-$(document).ready(function(){
-	window.alert("boysendom");
-});
+//Looping through entire DOM 
+var all = document.getElementsByTagName("*");
+
+for (var i=0, max=all.length; i < max; i++) {
+     // Do something with the element here
+     console.log("el" + all[i]);
+     var currentElement = all[i];
+     currentElement.style.color = "white";
+}
