@@ -1,0 +1,9 @@
+So, why make a chrome extension? Basically, sometimes you don't want to open dev tools to check out the CSS and layout of a page.
+
+The goal of this extension is to make finding basic CSS much easier than right clicking and painstakingly finding the right information.
+
+Upon activation the following is provided to the user:
+Outlines of all the elements on a page (similar to android developer tools' layout bounds)
+CSS upon hover of any element
+Mouse action summary (x,y position on page, etc)
+
