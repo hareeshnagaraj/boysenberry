@@ -60,6 +60,8 @@ Display the current class
 .popupClassDisplay{
 	width:450px;
 	min-height: 300px;
+	max-height: 600px;
+	overflow-y:scroll;
 	background-color: white;
 	color:#c2406d;
 }
@@ -67,11 +69,15 @@ Display the current class
 	padding-left: 10px;
 	padding-top: 10px;
 	font-size: 14px!important;
+	position: fixed;
+	background-color: white;
+	width: 100%;
 }
 .popupClassDisplayBody{
 	padding-top: 10px;
 	padding-left: 30px;
 	font-size: 14px!important;
+	margin-top: 20px;
 }
 .popupWrap{
 	width: 450px;
