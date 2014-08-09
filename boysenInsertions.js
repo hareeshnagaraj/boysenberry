@@ -7,19 +7,9 @@ boysenInsertions.js - content script
 
 */
 
-/*
-addElement is used to add the boysen div that contains the required information
-*/
-function addElement(){
-	$(".boysenWrapper").show();
-}
-
-$("body").prepend("<div class=\"boysenWrapper\"><div id=\"boysenWrapperTitle\"><div>boysenberry</div></div></div>");
-
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendResponse) {
 	if (request.action == "init"){
-	  addElement();
 	  console.log(request);
 	}
 });
@@ -47,4 +37,5 @@ function check_input() {
 		  console.log(response.farewell);
 		});
     }
+    console.log(input)
 };
