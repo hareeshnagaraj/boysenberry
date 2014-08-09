@@ -44,6 +44,8 @@ Title in the popup
 	float: right;
 	color:white;
 	margin-top: 10px;
+	cursor: pointer;
+	margin-right: 10px;
 }
 .popupTitleDisplayModeToggleImage{
 	float: right;
@@ -63,9 +65,23 @@ Display the current class
 }
 .popupClassDisplayOuter{
 	padding-left: 10px;
-	padding-top: 10px;	
+	padding-top: 10px;
+	font-size: 14px!important;
 }
 .popupClassDisplayBody{
 	padding-top: 10px;
 	padding-left: 30px;
+	font-size: 14px!important;
+}
+.popupWrap{
+	width: 450px;
+	position: fixed;
+	top:20px;
+	right:20px;
+	text-align: left;
+	z-index: 2147483647;
+	-webkit-box-shadow: -1px 0px 18px 0px rgba(50, 50, 50, 1);
+	-moz-box-shadow:    -1px 0px 18px 0px rgba(50, 50, 50, 1);
+	box-shadow:         -1px 0px 18px 0px rgba(50, 50, 50, 1);
+
 }

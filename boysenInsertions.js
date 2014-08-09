@@ -6,22 +6,22 @@ boysenInsertions.js - content script
 -Capture mouse movement, and display x,y coordinates
 
 */
+var currentElement;
+
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendResponse) {
-	if (request.action == "init"){
-    console.log(request);
+  console.log(request);
+	if (request.action == "finishedParsing"){
+    appendBox();
+    $("body").bind("mousemove",function(event){
+      var x = event.pageX;
+      var y = event.screenY;
+      var element = document.elementFromPoint(x,y);
+      updateBox(element);
+    });
 	}
 });
 
-$(document).ready(function(){
-
-});
-
-$("body").mousemove(function(event){
-  var element = document.elementFromPoint(event.pageX, event.screenY);
-  // console.log(event);
-  console.log(element);
-});
 
 /*	Listen for the keyboard shortcut */
 
@@ -52,3 +52,16 @@ function check_input() {
 function alertMsg() {
   console.log("somethign was clicked");
 }
+
+/*
+Adds the box to our page
+*/
+function appendBox(){
+  var box = '<div class="popupWrap"><div class="popupTitle"><div class="popupTitleInner">boysenberry</div><div id="search_icon" class="popupTitleDisplayModeToggle">toggle view</div></div><div class="popupClassDisplay"><div class="popupClassDisplayOuter">.class {</div><div class="popupClassDisplayBody">width:400px;<br>height:500px;<br>background-color: rgba(241,241,241,0.8);<br>right:20px;<br>top:20px;<br>display: none;<br>overflow-x:hidden; <br></div><div class="popupClassDisplayOuter">}</div></div></div>';
+  $("body").prepend(box);
+}
+
+function updateBox(element){
+  console.log(element);
+}
+

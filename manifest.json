@@ -19,16 +19,16 @@
 
   "content_scripts":[
     {
-      "matches":["http://*/*"],
+      "matches":["http://*/*","https://*/*"],
+      "css":["boysenCSS.css"],
       "js":["externalJS/jquery-1.11.1.min.js","boysenInsertions.js"],
-      "css":["boysenCSS.css"]
+      "run_at": "document_end"  
     }
   ],
   "browser_action": {
-    "default_icon": "boysenberry_logo.png",
-    "default_popup":"popup.html"
+    "default_icon": "boysenberry_logo.png"
   },
   "permissions": [
-    "activeTab", "tabs", "http://*/*", "https://*/*"
+    "activeTab", "tabs", "https://*/*", "http://*/*"
   ]
 }

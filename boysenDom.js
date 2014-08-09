@@ -45,6 +45,9 @@ function parseDom(){
       }
     }())
   }
+
+  chrome.runtime.sendMessage({status: 'finishedParsing'});
+  console.log("finished");
 }
 
 parseDom();
