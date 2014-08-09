@@ -41,10 +41,6 @@ function parseDom(){
 	     else if(numChildren > 0){
 	     	currentElement.style.border = this.purple;
 	     }
-	 //     $("a").click(function(){
-
-		// });
-		
 	}
 }
 
