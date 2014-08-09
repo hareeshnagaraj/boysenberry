@@ -30,6 +30,7 @@
   ],
 
   "browser_action": {
-    "default_icon": "boysenberry_logo.png"
+    "default_icon": "boysenberry_logo.png",
+    "default_popup":"popup.html"
   }
 }
