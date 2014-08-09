@@ -22,6 +22,14 @@ function parseDom(){
 	for (var i=0, max=all.length; i < max; i++) {
 	     // Do something with the element here
 	     var currentElement = all[i];
+	     var currentId = currentElement.id;
+	     if(!currentId){
+	     	currentId = "boysenID"+i;
+	     }
+	     console.log(currentElement);
+	     console.log(currentId);
+	     //Adding the hover listener
+
 	     var numChildren = currentElement.childNodes.length;
 	     
 	     if(numChildren > 3){
@@ -33,7 +41,12 @@ function parseDom(){
 	     else if(numChildren > 0){
 	     	currentElement.style.border = this.purple;
 	     }
+	 //     $("a").click(function(){
+
+		// });
+		
 	}
 }
 
 parseDom();
+

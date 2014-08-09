@@ -38,6 +38,19 @@ Title in the popup
 }
 .popupTitleInner{
 	padding:10px;
+	float: left;
+}
+.popupTitleDisplayModeToggle{
+	float: right;
+	color:white;
+	margin-top: 10px;
+}
+.popupTitleDisplayModeToggleImage{
+	float: right;
+	width: 25px;
+	margin-top: 10px;
+	margin-right: 10px;
+	cursor: pointer;
 }
 /*
 Display the current class
