@@ -6,7 +6,6 @@ boysenInsertions.js - content script
 -Capture mouse movement, and display x,y coordinates
 
 */
-
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendResponse) {
 	if (request.action == "init"){
