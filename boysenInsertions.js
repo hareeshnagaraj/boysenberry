@@ -13,6 +13,16 @@ chrome.runtime.onMessage.addListener(
 	}
 });
 
+$(document).ready(function(){
+
+});
+
+$("body").mousemove(function(event){
+  var element = document.elementFromPoint(event.pageX, event.screenY);
+  // console.log(event);
+  console.log(element);
+});
+
 /*	Listen for the keyboard shortcut */
 
 //’secret’ specifies the numerical keystrokes that make up the word “mario”

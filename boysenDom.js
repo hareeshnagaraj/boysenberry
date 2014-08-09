@@ -10,7 +10,16 @@ Fix alignment issues in certain websites, arises when adding border of 1 px
 Remove borders
 
 */
-
+function checkBody(string){
+  var isBody = string.indexOf("HTMLBodyElem");
+  var isHTML = string.indexOf("HTMLHtmlElem");
+  if(isBody == -1 && isHTML == -1){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
 //parseDom used to parse the entire DOM and add the appropriate borders
 
 function parseDom(){
@@ -21,26 +30,20 @@ function parseDom(){
   this.purple = "1px solid purple";
   for (var i=0, max=all.length; i < max; i++) {
     // Do something with the element here
-    var currentElement = all[i];
-    var currentId = currentElement.id;
-    if(!currentId){
-      currentId = "boysenID"+i;
-    }
-    console.log(currentElement);
-    console.log(currentId);
-    //Adding the hover listener
-
-    var numChildren = currentElement.childNodes.length;
-     
-    if(numChildren > 3){
-      currentElement.style.border = this.red;
-    }
-    else if(numChildren > 2){
-      currentElement.style.border = this.blue;
-    }
-    else if(numChildren > 0){
-      currentElement.style.border = this.purple;
-    }
+    (function () {
+      var currentElement = all[i];
+      var numChildren = currentElement.childNodes.length;
+       
+      if(numChildren > 3){
+        currentElement.style.border = this.red;
+      }
+      else if(numChildren > 2){
+        currentElement.style.border = this.blue;
+      }
+      else if(numChildren > 0){
+        currentElement.style.border = this.purple;
+      }
+    }())
   }
 }
 
