@@ -100,3 +100,16 @@ Display the current class
 .hoverEffect{
 	background-color: rgba(155, 186, 219, .5);
 }
+
+/*
+border classes
+*/
+.boysenRed{
+	border:1px solid red;
+}
+.boysenBlue{
+	border:1px solid blue;
+}
+.boysenPurple{
+	border:1px solid purple;
+}

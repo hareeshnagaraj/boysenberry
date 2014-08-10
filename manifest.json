@@ -13,7 +13,7 @@
   "version": "1.0",
 
   "background":{
-      "scripts":["externalJS/jquery-1.11.1.min.js","boysenEvents.js","boysenDom.js"],
+      "scripts":["externalJS/jquery-1.11.1.min.js","boysenEvents.js"],
       "persistent":false
     },
 
@@ -21,7 +21,7 @@
     {
       "matches":["http://*/*","https://*/*"],
       "css":["boysenCSS.css"],
-      "js":["externalJS/jquery-1.11.1.min.js","externalJS/jquery-ui.min.js","boysenInsertions.js"],
+      "js":["externalJS/jquery-1.11.1.min.js","externalJS/jquery-ui.min.js","boysenDom.js","boysenInsertions.js"],
       "run_at": "document_end"  
     }
   ],
@@ -32,7 +32,7 @@
     "activeTab", "tabs", "https://*/*", "http://*/*"
   ],
   "optional_permissions": [ "clipboardWrite" ],
-  
+
   "commands":{
     "show_details":{
       "suggested_key":{

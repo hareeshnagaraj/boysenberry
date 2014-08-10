@@ -10,6 +10,8 @@ Fix alignment issues in certain websites, arises when adding border of 1 px
 Remove borders
 
 */
+var isOpen = false;
+
 function checkBody(string){
   var isBody = string.indexOf("HTMLBodyElem");
   var isHTML = string.indexOf("HTMLHtmlElem");
@@ -20,40 +22,88 @@ function checkBody(string){
     return false;
   }
 }
+
 //parseDom used to parse the entire DOM and add the appropriate borders
-
-
-function addBorderToElement(currentElement, that){
+function addBorderToElement(currentElement){
   var currentWidth = currentElement.clientWidth;
   var currentHeight = currentElement.clientHeight;
-  currentElement.style.width = currentWidth - 2;
+
   var numChildren = currentElement.childNodes.length;
 
   if(numChildren > 3){
-    currentElement.style.border = that.red;
+      document.getElementById(currentElement.id).className += " boysenRed";
   }
   else if(numChildren > 2){
-    currentElement.style.border = that.blue;
+     document.getElementById(currentElement.id).className += " boysenBlue";
   }
   else if(numChildren > 0){
-    currentElement.style.border = that.purple;
+     document.getElementById(currentElement.id).className += " boysenPurple";
   }
 }
 
+/*
+Function to add border clases appropriately
+*/
 function parseDom(){
   console.log("parseDom");
   var all = document.getElementsByTagName("*");
-  this.red = "1px solid red";
-  this.blue = "1px solid blue";
-  this.purple = "1px solid purple";
   var max=all.length;
+  var elementID;
   for (var i=0; i < max; i++) {
     // Do something with the element here
-    addBorderToElement(all[i], this);
+    var element = all[i];
+    elementID = element.id;
+    if(!element.id){
+      element.id = "boysen"+Math.floor((Math.random() * 10000) + 1);
+    }
+    addBorderToElement(all[i]);
   }
 
   chrome.runtime.sendMessage({status: 'finishedParsing'});
   console.log("finished");
 }
 
-parseDom();
+/*
+Function to remove added classes
+*/
+function removeClasses(selected){
+  selected.className = selected.className.replace("boysenBlue" , '' );
+  selected.className = selected.className.replace("boysenPurple" , '' );
+  selected.className = selected.className.replace("boysenRed" , '' );
+}
+
+/*
+Function to reset the borders and remove the box
+*/
+function clearDom(){
+  console.log("clearDom");
+  var all = document.getElementsByTagName("*");
+  var max=all.length;
+  var elementID;
+  for (var i=0; i < max; i++) {
+    // Do something with the element here
+    var element = all[i];
+    elementID = element.id;
+    var selected = document.getElementById(elementID);
+    if(selected != null){
+      removeClasses(selected);
+    }
+  }
+  $(".popupWrap").fadeOut().delay(500).remove();
+}
+
+
+chrome.runtime.onMessage.addListener(
+  function(request, sender, sendResponse) {
+  console.log(request);
+  if (request.action == "beginParse"){
+    if(!isOpen){
+      parseDom();
+      isOpen = true;
+    }
+    else{
+      clearDom();
+      isOpen = false;
+    }
+  }
+});
