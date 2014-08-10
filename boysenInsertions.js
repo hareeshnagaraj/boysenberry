@@ -10,7 +10,7 @@ boysenInsertions.js - content script
 var currentElement = "";
 var currentDetailedCSS = "";
 var currentShortCSS = "";
-var basicCSS = ["background-color","color","font-family","font-size","font-style","font-variant","height","letter-spacing","opacity","overflow-x","overflow-y","text-decoration","width"];
+var basicCSS = ["background-color","color","font-family","font-size","font-style","height","letter-spacing","margin","opacity","overflow-x","overflow-y","text-decoration","width"];
 var popupElements = ["popupWrap","popupTitle","popupTitleInner","popupClassDisplay","popupClassDisplayOuter","popupTitleDisplayModeToggle","popupClassDisplayBody","popupWrap ui-draggable ui-draggable-handle"];
 var details = 0;
 
@@ -179,6 +179,10 @@ function grabStyle(styleObject){
     }
     currentDetailedCSS += key + ":" + val + "<br>";
   }
+  var marginString = "margin:"+styleObject["margin-top"] + " " + styleObject["margin-right"] + " " + styleObject["margin-bottom"] + " " + styleObject["margin-left"];
+  var paddingString = "padding:"+styleObject["padding-top"] + " " + styleObject["padding-right"] + " " + styleObject["padding-bottom"] + " " + styleObject["padding-left"];
+  string += marginString+"<br>";
+  string += paddingString;
   return string;
 }
 
