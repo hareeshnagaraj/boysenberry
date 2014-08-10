@@ -111,6 +111,7 @@ function appendBox(){
                 </div> \
               </div> \
             </div>';
+            
   if(!$(".popupWrap").length){
     $("body").prepend(box);
     $(".popupWrap").draggable({handle:".popupTitle"});
