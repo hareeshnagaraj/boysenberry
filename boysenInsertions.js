@@ -25,6 +25,9 @@ chrome.runtime.onMessage.addListener(
     var message = request.message;
     console.log(message);
   }
+  if( request.action == "beginCopy"){
+    copyFromSignal();
+  }
   if(request.action == "toggleDetails"){
   }
 });
@@ -91,6 +94,9 @@ function appendBox(){
                 <div id="search_icon" class="popupTitleDisplayModeToggle"> \
                   (toggle view) \
                 </div> \
+                <div id="copy_style" class="popupTitleDisplayModeToggle"> \
+                  (copy style) \
+                </div> \
               </div> \
               <div class="popupClassDisplayOuter"> \
                 Tag: \
@@ -108,10 +114,11 @@ function appendBox(){
                 </div> \
               </div> \
             </div>';
-            
+
   if(!$(".popupWrap").length){
     $("body").prepend(box);
     $(".popupWrap").draggable({handle:".popupTitle"});
+    addCopyListener();
     $("#show_details").click(function(){
       if(details === 0){
         details = 1;
@@ -125,6 +132,36 @@ function appendBox(){
     });
   }
 }
+
+/*
+These functions set up our copy functionality
+*/
+function addCopyListener(){
+  $("#copy_style").click(function(){
+    var string = $("#boxClassBody").html();
+    string = string.replace(/<br>/g,"\n");
+    signalCopy(string);
+  });
+}
+function copyFromSignal(){
+  var string = $("#boxClassBody").html();
+  string = string.replace(/<br>/g,"\n");
+  signalCopy(string);
+  console.log("copySent");
+}
+function resetCopy(){
+ $("#copy_style").html("(copy style)"); 
+}
+function signalCopy(tobeCopied){
+ chrome.runtime.sendMessage({action: "copy",string:tobeCopied}, function(response) {
+    console.log(response.farewell);
+  });
+ $("#copy_style").html("(copied!)");
+ setTimeout(function(){resetCopy();}, 3000);
+}
+/*
+Removes added classes
+*/
 function stripClassName(string){
   string = string.replace("boysenBlue","");
   string = string.replace("boysenRed","");
@@ -162,7 +199,6 @@ function updateBox(element){
         $("#boxClassBody").html(currentDetailedCSS);
       }
     }
-    signalCopy();
   }
 }
 
@@ -173,9 +209,9 @@ function grabStyle(styleObject){
     var val = styleObject[key];
     var found = $.inArray(key, basicCSS) > -1;
     if(found){
-      string += key + ":" + val + "<br>";
+      string += key + ":" + val + ";<br>";
     }
-    currentDetailedCSS += key + ":" + val + "<br>";
+    currentDetailedCSS += key + ":" + val + ";<br>";
   }
   var marginString = "margin:"+styleObject["margin-top"] + " " + styleObject["margin-right"] + " " + styleObject["margin-bottom"] + " " + styleObject["margin-left"];
   var paddingString = "padding:"+styleObject["padding-top"] + " " + styleObject["padding-right"] + " " + styleObject["padding-bottom"] + " " + styleObject["padding-left"];
@@ -184,11 +220,7 @@ function grabStyle(styleObject){
   return string;
 }
 
-function signalCopy(){
-   chrome.runtime.sendMessage({action: "copy"}, function(response) {
-      console.log(response.farewell);
-    });
-}
+
 
 /*
  * getStyleObject Plugin for jQuery JavaScript Library

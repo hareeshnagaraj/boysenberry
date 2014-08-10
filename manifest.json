@@ -32,13 +32,20 @@
     "activeTab", "tabs", "https://*/*", "http://*/*"
   ],
   "optional_permissions": [ "clipboardWrite" ],
-
   "commands":{
     "show_details":{
       "suggested_key":{
         "default":"Ctrl+B",
         "mac":"Ctrl+B",
         "windows":"Ctrl+B"
+        },
+       "description": "toggle details"
+    },
+    "copy":{
+      "suggested_key":{
+        "default":"Alt+B",
+        "mac":"Alt+B",
+        "windows":"Alt+B"
         },
        "description": "toggle details"
     }
