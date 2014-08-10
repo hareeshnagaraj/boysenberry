@@ -96,3 +96,7 @@ Display the current class
 	background-color: white;
 
 }
+
+.hoverEffect{
+	background-color: rgba(155, 186, 219, .5);
+}
