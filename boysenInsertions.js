@@ -77,13 +77,6 @@ function alertMsg() {
 }
 
 /*
-To toggle the dragging of the element
-*/
-function toggleDrag(){
-
-}
-
-/*
 Adds the box to our page
 */
 function appendBox(){
@@ -98,6 +91,10 @@ function appendBox(){
                 <div id="search_icon" class="popupTitleDisplayModeToggle"> \
                   (toggle view) \
                 </div> \
+              </div> \
+              <div class="popupClassDisplayOuter"> \
+                Tag: \
+                <span id="boysenPopupTag"></span> \n \
               </div> \
               <div class="popupClassDisplay"> \
                 <div id="boxClassName" class="popupClassDisplayOuter"> \
@@ -115,7 +112,6 @@ function appendBox(){
   if(!$(".popupWrap").length){
     $("body").prepend(box);
     $(".popupWrap").draggable({handle:".popupTitle"});
-
     $("#show_details").click(function(){
       if(details === 0){
         details = 1;
@@ -140,6 +136,7 @@ Updates the box according to which element we are hovering over
 */
 function updateBox(element){
   if(element){
+    $('#boysenPopupTag').html($(element).prop("tagName"));
     var elementID;
     if(!element.id){
       element.id = "boysen"+Math.floor((Math.random() * 10000) + 1);
