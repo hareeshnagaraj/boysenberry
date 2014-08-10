@@ -4,6 +4,16 @@ boysenEvents.js
 -Calls content script boysenInsertions.js file for insertion of other elements/javascript
 */
 
+/*
+Function to copy 
+*/
+function copy(){
+    //Get Input Element
+    document.getElementById("boxClassBody").select();
+    //Copy Content
+    document.execCommand("Copy", false, null);
+}
+
 // Called when the user clicks on the browser action.
 chrome.browserAction.onClicked.addListener(function (tab) { //Fired when User Clicks ICON
     console.log("browser action");
@@ -14,7 +24,9 @@ chrome.browserAction.onClicked.addListener(function (tab) { //Fired when User Cl
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.action == "boysen"){
       chrome.tabs.executeScript(null, {file: "boysenDom.js"});
-      
+    }
+    if( request.action == "copy"){
+      copy();
     }
     if(request.status == "finishedParsing"){
       chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {

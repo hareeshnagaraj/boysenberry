@@ -31,6 +31,7 @@
   "permissions": [
     "activeTab", "tabs", "https://*/*", "http://*/*"
   ],
+  "optional_permissions": [ "clipboardWrite" ],
   "commands":{
     "show_details":{
       "suggested_key":{

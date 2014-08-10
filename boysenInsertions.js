@@ -9,7 +9,7 @@ boysenInsertions.js - content script
 var currentElement = "";
 var currentDetailedCSS = "";
 var currentShortCSS = "";
-var basicCSS = ["backgroundColor","color","fontFamily","fontSize","fontStyle","fontVariant","height","letterSpacing","opacity","overflowX","textDecoration","width"];
+var basicCSS = ["background-color","color","font-family","font-size","font-style","font-variant","height","letter-spacing","opacity","overflow-x","text-decoration","width"];
 var details = 0;
 
 chrome.runtime.onMessage.addListener(
@@ -116,6 +116,7 @@ function updateBox(element){
         $("#boxClassBody").html(currentDetailedCSS);
       }
     }
+    signalCopy();
   }
 }
 
@@ -131,6 +132,12 @@ function grabStyle(styleObject){
     currentDetailedCSS += key + ":" + val + "<br>";
   }
   return string;
+}
+
+function signalCopy(){
+   chrome.runtime.sendMessage({action: "copy"}, function(response) {
+      console.log(response.farewell);
+    });
 }
 
 /*
@@ -155,7 +162,7 @@ function grabStyle(styleObject){
                 var prop = style[i];
                 var camel = prop.replace(/\-([a-z])/g, camelize);
                 var val = style.getPropertyValue(prop);
-                returns[camel] = val;
+                returns[prop] = val;
             }
             return returns;
         }
