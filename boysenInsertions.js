@@ -75,10 +75,6 @@ function check_input() {
     console.log(input);
 }
 
-function alertMsg() {
-  console.log("somethign was clicked");
-}
-
 /*
 Adds the box to our page
 */
@@ -119,6 +115,7 @@ function appendBox(){
     $("body").prepend(box);
     $(".popupWrap").draggable({handle:".popupTitle"});
     addCopyListener();
+    $('.popupWrap').addClass("bounceInDown animated");
     $("#show_details").click(function(){
       if(details === 0){
         details = 1;
@@ -130,6 +127,9 @@ function appendBox(){
         $("#boxClassBody").html(currentShortCSS);
       }
     });
+    setTimeout(function(){
+      $('.popupWrap').removeClass("bounceInDown animated");
+    }, 3000);
   }
 }
 
@@ -143,15 +143,18 @@ function addCopyListener(){
     signalCopy(string);
   });
 }
+
 function copyFromSignal(){
   var string = $("#boxClassBody").html();
   string = string.replace(/<br>/g,"\n");
   signalCopy(string);
   console.log("copySent");
 }
+
 function resetCopy(){
- $("#copy_style").html("(copy style)"); 
+ $("#copy_style").html("(copy style)");
 }
+
 function signalCopy(tobeCopied){
  chrome.runtime.sendMessage({action: "copy",string:tobeCopied}, function(response) {
     console.log(response.farewell);

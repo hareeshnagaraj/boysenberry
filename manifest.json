@@ -20,7 +20,7 @@
   "content_scripts":[
     {
       "matches":["http://*/*","https://*/*"],
-      "css":["boysenCSS.css"],
+      "css":["boysenCSS.css", "animate.css"],
       "js":["externalJS/jquery-1.11.1.min.js","externalJS/jquery-ui.min.js","boysenDom.js","boysenInsertions.js"],
       "run_at": "document_end"  
     }
