@@ -12,17 +12,6 @@ Remove borders
 */
 var isOpen = false;
 
-function checkBody(string){
-  var isBody = string.indexOf("HTMLBodyElem");
-  var isHTML = string.indexOf("HTMLHtmlElem");
-  if(isBody == -1 && isHTML == -1){
-    return true;
-  }
-  else{
-    return false;
-  }
-}
-
 //parseDom used to parse the entire DOM and add the appropriate borders
 function addBorderToElement(currentElement){
   var currentWidth = currentElement.clientWidth;
@@ -85,7 +74,7 @@ function clearDom(){
     var element = all[i];
     elementID = element.id;
     var selected = document.getElementById(elementID);
-    if(selected != null){
+    if(selected !== null){
       removeClasses(selected);
     }
   }
