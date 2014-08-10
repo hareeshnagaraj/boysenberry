@@ -7,20 +7,32 @@ boysenInsertions.js - content script
 
 */
 var currentElement = "";
+var currentDetailedCSS = "";
+var currentShortCSS = "";
+var basicCSS = ["backgroundColor","color","fontFamily","fontSize","fontStyle","fontVariant","height","letterSpacing","opacity","overflowX","textDecoration","width"];
+var details = 0;
 
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendResponse) {
   console.log(request);
 	if (request.action == "finishedParsing"){
     appendBox();
-    $("body").bind("mousemove",function(event){
-      var x = event.pageX;
-      var y = event.screenY;
-      var element = document.elementFromPoint(x,y);
-      updateBox(element);
-    });
+    bindMouse();
 	}
+  if(request.action == "toggleDetails"){
+
+  }
 });
+
+//Binding the mouse
+function bindMouse(){
+  $("body").bind("mousemove",function(event){
+    var x = event.pageX;
+    var y = event.screenY;
+    var element = document.elementFromPoint(x,y);
+    updateBox(element);
+  });
+}
 
 
 /*	Listen for the keyboard shortcut */
@@ -57,8 +69,21 @@ function alertMsg() {
 Adds the box to our page
 */
 function appendBox(){
-  var box = '<div class="popupWrap"><div class="popupTitle"><div class="popupTitleInner">boysenberry</div><div id="search_icon" class="popupTitleDisplayModeToggle">toggle view</div></div><div class="popupClassDisplay"><div id="boxClassName" class="popupClassDisplayOuter">.class {</div><div id="boxClassBody" class="popupClassDisplayBody">width:400px;<br>height:500px;<br>background-color: rgba(241,241,241,0.8);<br>right:20px;<br>top:20px;<br>display: none;<br>overflow-x:hidden; <br></div><div class="popupClassDisplayOuter">}</div></div></div>';
-  $("body").prepend(box);
+  var box = '<div class="popupWrap"><div class="popupTitle"><div class="popupTitleInner">boysenberry</div><div id="show_details" class="popupTitleDisplayModeToggle">(show details)</div><div id="search_icon" class="popupTitleDisplayModeToggle">(toggle view)</div></div><div class="popupClassDisplay"><div id="boxClassName" class="popupClassDisplayOuter">.class {</div><div id="boxClassBody" class="popupClassDisplayBody">width:400px;<br>height:500px;<br>background-color: rgba(241,241,241,0.8);<br>right:20px;<br>top:20px;<br>display: none;<br>overflow-x:hidden; <br></div><div class="popupClassDisplayOuter">}</div></div></div>';
+  if(!$(".popupWrap").length){
+    $("body").prepend(box);
+    $("#show_details").click(function(){
+      if(details == 0){
+        details = 1;
+        $("#show_details").html("(hide details)");
+        $("#boxClassBody").html(currentDetailedCSS);
+      }else{
+        details = 0;
+        $("#show_details").html("(show details)");
+        $("#boxClassBody").html(currentShortCSS);
+      }
+    });
+  }
 }
 
 /*
@@ -75,7 +100,7 @@ function updateBox(element){
     if($(accessID) != null){
       var className = $(accessID).attr('class');
       var classCSS = $(accessID).getStyleObject();
-      var css = grabStyle(classCSS);
+      currentShortCSS = grabStyle(classCSS);
       if(!className){
         className = "anonymous_class";
       }
@@ -84,16 +109,26 @@ function updateBox(element){
         $("#boxClassName").html(classString);
         currentElement = className;
       }
-      $("#boxClassBody").html(css);
+      if(details == 0){
+        $("#boxClassBody").html(currentShortCSS);
+      }
+      else{
+        $("#boxClassBody").html(currentDetailedCSS);
+      }
     }
   }
 }
 
 function grabStyle(styleObject){
+  currentDetailedCSS = "";
   var string = "";
   for (var key in styleObject) {
     var val = styleObject[key];
-    string += key + ":" + val + "<br>";
+    var found = $.inArray(key, basicCSS) > -1;
+    if(found){
+      string += key + ":" + val + "<br>";
+    }
+    currentDetailedCSS += key + ":" + val + "<br>";
   }
   return string;
 }

@@ -10,12 +10,6 @@ chrome.browserAction.onClicked.addListener(function (tab) { //Fired when User Cl
     chrome.tabs.executeScript(null, {file: "boysenDom.js"});
 });
 
-$(document).ready(function(){
-  $("#search_icon").click(function(){
-    
-  });
-});
-
 //Called when the user types the word boysen, as well as when DOM is done parsing
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     if (request.action == "boysen"){
@@ -29,4 +23,9 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         });
       });
     }
+});
+
+//keyboard shortcuts
+chrome.commands.onCommand.addListener(function(command) {
+  console.log('Command:', command);
 });

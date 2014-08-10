@@ -30,5 +30,14 @@
   },
   "permissions": [
     "activeTab", "tabs", "https://*/*", "http://*/*"
-  ]
+  ],
+  "commands":{
+    "show_details":{
+      "suggested_key":{
+        "mac":"Command+B",
+        "windows":"Ctrl+B"
+        },
+       "description": "toggle details"
+    }
+  }
 }
