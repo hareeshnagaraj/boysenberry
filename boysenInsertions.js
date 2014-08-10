@@ -10,7 +10,7 @@ boysenInsertions.js - content script
 var currentElement = "";
 var currentDetailedCSS = "";
 var currentShortCSS = "";
-var basicCSS = ["background-color","color","font-family","font-size","font-style","font-variant","height","letter-spacing","opacity","overflow-x","text-decoration","width"];
+var basicCSS = ["background-color","color","font-family","font-size","font-style","font-variant","height","letter-spacing","opacity","overflow-x","overflow-y","text-decoration","width"];
 var popupElements = ["popupWrap","popupTitle","popupTitleInner","popupClassDisplay","popupClassDisplayOuter","popupTitleDisplayModeToggle","popupClassDisplayBody","popupWrap ui-draggable ui-draggable-handle"];
 var details = 0;
 
@@ -77,6 +77,13 @@ function alertMsg() {
 }
 
 /*
+To toggle the dragging of the element
+*/
+function toggleDrag(){
+
+}
+
+/*
 Adds the box to our page
 */
 function appendBox(){
@@ -106,7 +113,8 @@ function appendBox(){
             </div>';
   if(!$(".popupWrap").length){
     $("body").prepend(box);
-    $(".popupWrap").draggable();
+    $(".popupWrap").draggable({handle:".popupTitle"});
+
     $("#show_details").click(function(){
       if(details === 0){
         details = 1;
