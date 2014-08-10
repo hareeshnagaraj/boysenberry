@@ -16,8 +16,8 @@ var isOpen = false;
 function addBorderToElement(currentElement){
   var currentWidth = currentElement.clientWidth;
   var currentHeight = currentElement.clientHeight;
-
   var numChildren = currentElement.childNodes.length;
+  var smallWidth = currentElement.width - 2;
 
   if(numChildren > 3){
       document.getElementById(currentElement.id).className += " boysenRed";
@@ -28,6 +28,7 @@ function addBorderToElement(currentElement){
   else if(numChildren > 0){
      document.getElementById(currentElement.id).className += " boysenPurple";
   }
+  document.getElementById(currentElement.id).width = smallWidth;
 }
 
 /*
@@ -59,6 +60,7 @@ function removeClasses(selected){
   selected.className = selected.className.replace("boysenBlue" , '' );
   selected.className = selected.className.replace("boysenPurple" , '' );
   selected.className = selected.className.replace("boysenRed" , '' );
+  selected.className = selected.className.replace("hoverEffect" , '' );
 }
 
 /*

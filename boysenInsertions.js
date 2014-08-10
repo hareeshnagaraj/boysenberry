@@ -11,6 +11,7 @@ var currentElement = "";
 var currentDetailedCSS = "";
 var currentShortCSS = "";
 var basicCSS = ["background-color","color","font-family","font-size","font-style","font-variant","height","letter-spacing","opacity","overflow-x","text-decoration","width"];
+var popupElements = ["popupWrap","popupTitle","popupTitleInner","popupClassDisplay","popupClassDisplayOuter","popupTitleDisplayModeToggle","popupClassDisplayBody","popupWrap ui-draggable ui-draggable-handle"];
 var details = 0;
 
 chrome.runtime.onMessage.addListener(
@@ -37,8 +38,11 @@ function bindMouse(){
     var y = event.pageY - offset;
     console.log(y);
     var element = document.elementFromPoint(x,y);
-    updateBox(element);
-    $(element).addClass("hoverEffect");
+    var found = $.inArray(element.className, popupElements) > -1;
+    if(!found){
+      updateBox(element);
+      $(element).addClass("hoverEffect");
+    }
   });
 }
 
