@@ -46,7 +46,9 @@ function parseDom(){
     if(!element.id){
       element.id = "boysen"+Math.floor((Math.random() * 10000) + 1);
     }
-    addBorderToElement(all[i]);
+    if(document.getElementById(element.id) != null){
+      addBorderToElement(all[i]);
+    } 
   }
 
   chrome.runtime.sendMessage({status: 'finishedParsing'});
