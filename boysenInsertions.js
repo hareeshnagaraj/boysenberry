@@ -76,7 +76,7 @@ function appendBox(){
     $("body").prepend(box);
     $(".popupWrap").draggable();
     $("#show_details").click(function(){
-      if(details == 0){
+      if(details === 0){
         details = 1;
         $("#show_details").html("(hide details)");
         $("#boxClassBody").html(currentDetailedCSS);
@@ -100,7 +100,7 @@ function updateBox(element){
     }
     elementID = element.id;
     var accessID = "#"+elementID;
-    if($(accessID) != null){
+    if($(accessID) !== null){
       var className = $(accessID).attr('class');
       var classCSS = $(accessID).getStyleObject();
       currentShortCSS = grabStyle(classCSS);
@@ -112,7 +112,7 @@ function updateBox(element){
         $("#boxClassName").html(classString);
         currentElement = className;
       }
-      if(details == 0){
+      if(details === 0){
         $("#boxClassBody").html(currentShortCSS);
       }
       else{
@@ -159,7 +159,7 @@ function signalCopy(){
         if(window.getComputedStyle){
             var camelize = function(a,b){
                 return b.toUpperCase();
-            }
+            };
             style = window.getComputedStyle(dom, null);
             for(var i=0;i<style.length;i++){
                 var prop = style[i];
@@ -177,7 +177,7 @@ function signalCopy(){
             return returns;
         }
         return this.css();
-    }
+    };
 })(jQuery);
 
 

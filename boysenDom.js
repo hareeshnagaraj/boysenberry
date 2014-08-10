@@ -22,31 +22,34 @@ function checkBody(string){
 }
 //parseDom used to parse the entire DOM and add the appropriate borders
 
+
+function addBorderToElement(currentElement, that){
+  var currentWidth = currentElement.clientWidth;
+  var currentHeight = currentElement.clientHeight;
+  currentElement.style.width = currentWidth - 2;
+  var numChildren = currentElement.childNodes.length;
+
+  if(numChildren > 3){
+    currentElement.style.border = that.red;
+  }
+  else if(numChildren > 2){
+    currentElement.style.border = that.blue;
+  }
+  else if(numChildren > 0){
+    currentElement.style.border = that.purple;
+  }
+}
+
 function parseDom(){
   console.log("parseDom");
   var all = document.getElementsByTagName("*");
   this.red = "1px solid red";
   this.blue = "1px solid blue";
   this.purple = "1px solid purple";
-  for (var i=0, max=all.length; i < max; i++) {
+  var max=all.length;
+  for (var i=0; i < max; i++) {
     // Do something with the element here
-    (function () {
-      var currentElement = all[i];
-      var currentWidth = all[i].clientWidth;
-      var currentHeight = all[i].clientHeight;
-      var numChildren = currentElement.childNodes.length;
-      currentElement.style.width = currentWidth - 2;
-      // currentElement.style.height = currentHeight - 2;
-      if(numChildren > 3){
-        currentElement.style.border = this.red;
-      }
-      else if(numChildren > 2){
-        currentElement.style.border = this.blue;
-      }
-      else if(numChildren > 0){
-        currentElement.style.border = this.purple;
-      }
-    }())
+    addBorderToElement(all[i], this);
   }
 
   chrome.runtime.sendMessage({status: 'finishedParsing'});
