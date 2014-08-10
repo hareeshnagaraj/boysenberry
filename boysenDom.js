@@ -81,6 +81,7 @@ function clearDom(){
   unbindMouse();
   $(".popupWrap").fadeOut().delay(500).remove();
 }
+
 //Unbind mouse
 function unbindMouse(){
   $("body").unbind("mousemove");
