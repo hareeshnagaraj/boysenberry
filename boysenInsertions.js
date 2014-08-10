@@ -19,8 +19,11 @@ chrome.runtime.onMessage.addListener(
     appendBox();
     bindMouse();
 	}
+  if( request.action == "message"){
+    var message = request.message;
+    console.log(message);
+  }
   if(request.action == "toggleDetails"){
-
   }
 });
 
@@ -181,5 +184,3 @@ function signalCopy(){
         return this.css();
     };
 })(jQuery);
-
-
