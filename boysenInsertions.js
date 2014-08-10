@@ -74,6 +74,7 @@ function appendBox(){
   var box = '<div class="popupWrap"><div class="popupTitle"><div class="popupTitleInner">boysenberry</div><div id="show_details" class="popupTitleDisplayModeToggle">(show details)</div><div id="search_icon" class="popupTitleDisplayModeToggle">(toggle view)</div></div><div class="popupClassDisplay"><div id="boxClassName" class="popupClassDisplayOuter">.class {</div><div id="boxClassBody" class="popupClassDisplayBody">width:400px;<br>height:500px;<br>background-color: rgba(241,241,241,0.8);<br>right:20px;<br>top:20px;<br>display: none;<br>overflow-x:hidden; <br></div><div class="popupClassDisplayOuter">}</div></div></div>';
   if(!$(".popupWrap").length){
     $("body").prepend(box);
+    $(".popupWrap").draggable();
     $("#show_details").click(function(){
       if(details == 0){
         details = 1;

@@ -32,8 +32,11 @@ function parseDom(){
     // Do something with the element here
     (function () {
       var currentElement = all[i];
+      var currentWidth = all[i].clientWidth;
+      var currentHeight = all[i].clientHeight;
       var numChildren = currentElement.childNodes.length;
-       
+      currentElement.style.width = currentWidth - 2;
+      // currentElement.style.height = currentHeight - 2;
       if(numChildren > 3){
         currentElement.style.border = this.red;
       }

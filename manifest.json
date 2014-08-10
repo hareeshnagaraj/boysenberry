@@ -21,7 +21,7 @@
     {
       "matches":["http://*/*","https://*/*"],
       "css":["boysenCSS.css"],
-      "js":["externalJS/jquery-1.11.1.min.js","boysenInsertions.js"],
+      "js":["externalJS/jquery-1.11.1.min.js","externalJS/jquery-ui.min.js","boysenInsertions.js"],
       "run_at": "document_end"  
     }
   ],
