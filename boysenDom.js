@@ -78,9 +78,13 @@ function clearDom(){
       removeClasses(selected);
     }
   }
+  unbindMouse();
   $(".popupWrap").fadeOut().delay(500).remove();
 }
-
+//Unbind mouse
+function unbindMouse(){
+  $("body").unbind("mousemove");
+}
 
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {

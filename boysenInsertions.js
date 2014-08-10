@@ -42,7 +42,6 @@ function bindMouse(){
   });
 }
 
-
 /*	Listen for the keyboard shortcut */
 
 //’secret’ specifies the numerical keystrokes that make up the word “mario”
@@ -117,7 +116,12 @@ function appendBox(){
     });
   }
 }
-
+function stripClassName(string){
+  string = string.replace("boysenBlue","");
+  string = string.replace("boysenRed","");
+  string = string.replace("boysenPurple","");
+  return string;
+}
 /*
 Updates the box according to which element we are hovering over
 */
@@ -130,7 +134,7 @@ function updateBox(element){
     elementID = element.id;
     var accessID = "#"+elementID;
     if($(accessID) !== null){
-      var className = $(accessID).attr('class');
+      var className = stripClassName($(accessID).attr('class'));
       var classCSS = $(accessID).getStyleObject();
       currentShortCSS = grabStyle(classCSS);
       if(!className){
