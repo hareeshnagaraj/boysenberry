@@ -83,7 +83,12 @@ function clearDom(){
     }
   }
   unbindMouse();
-  $(".popupWrap").fadeOut().delay(500).remove();
+  
+  $('.popupWrap').addClass("bounceOutDown animated");
+  setTimeout(function(){
+      $('.popupWrap').removeClass("bounceInDown animated");
+      $(".popupWrap").remove();
+    }, 3000);
 }
 
 //Unbind mouse
