@@ -27,8 +27,10 @@ chrome.runtime.onMessage.addListener(
 //Binding the mouse
 function bindMouse(){
   $("body").bind("mousemove",function(event){
+    var offset = $(document).scrollTop();
     var x = event.pageX;
-    var y = event.screenY;
+    var y = event.pageY - offset;
+    console.log(y);
     var element = document.elementFromPoint(x,y);
     updateBox(element);
   });
