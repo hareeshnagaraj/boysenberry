@@ -18,17 +18,17 @@ function addBorderToElement(currentElement){
   var currentHeight = currentElement.clientHeight;
   var numChildren = currentElement.childNodes.length;
   var elementFromID = document.getElementById(currentElement.id);
-  if(elementFromID == null){
+  if(elementFromID === null){
     return;
   }
   if(numChildren > 3){
-      elementFromID.className += " boysenRed";
+    elementFromID.className += " boysenRed";
   }
   else if(numChildren > 2){
-     elementFromID.className += " boysenBlue";
+    elementFromID.className += " boysenBlue";
   }
   else if(numChildren > 0){
-     elementFromID.className += " boysenPurple";
+    elementFromID.className += " boysenPurple";
   }
 }
 
@@ -52,9 +52,9 @@ function parseDom(){
     if(!element.id){
       element.id = "boysen"+i;
     }
-    
-    addBorderToElement(all[i]);
-     
+    if(document.getElementById(element.id) !== null){
+      addBorderToElement(all[i]);
+    }
   }
   chrome.runtime.sendMessage({status: 'finishedParsing'});
   console.log("finished");
@@ -89,7 +89,7 @@ function clearDom(){
     var element = all[i];
     elementID = element.id;
     var selected = document.getElementById(elementID);
-    if(selected != null){
+    if(selected !== null){
       removeClasses(selected);
     }
   }

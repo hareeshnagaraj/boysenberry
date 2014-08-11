@@ -8,11 +8,11 @@ boysenEvents.js
 Function to copy 
 */
 function copy(tobeCopied){
-    var clipboardholder= document.getElementById("clipboardholder"); 
-    clipboardholder.style.display = "block"; 
-    clipboardholder.value = tobeCopied; 
-    clipboardholder.select(); 
-    document.execCommand("Copy"); 
+    var clipboardholder= document.getElementById("clipboardholder");
+    clipboardholder.style.display = "block";
+    clipboardholder.value = tobeCopied;
+    clipboardholder.select();
+    document.execCommand("Copy");
 }
 
 // Called when the user clicks on the browser action.
