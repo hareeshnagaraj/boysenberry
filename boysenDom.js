@@ -97,8 +97,9 @@ function clearDom(){
   
   $('.popupWrap').addClass("bounceOutDown animated");
   setTimeout(function(){
-    $(".popupWrap").hide();
-  }, 3000);
+    $(".popupWrap").removeClass("bounceOutDown animated");
+    $(".popupWrap").detach();
+  }, 1000);
 }
 
 //Unbind mouse

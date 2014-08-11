@@ -117,11 +117,11 @@ Display the current class
 border classes
 */
 .boysenRed{
-	outline:1px solid red;
+	outline:1px solid red!important;
 }
 .boysenBlue{
-	outline:1px solid blue;
+	outline:1px solid blue!important;
 }
 .boysenPurple{
-	outline:1px solid purple;
+	outline:1px solid purple!important;
 }

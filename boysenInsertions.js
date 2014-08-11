@@ -205,6 +205,7 @@ function updateBox(element){
       else{
         $("#boxClassBody").html(currentDetailedCSS);
       }
+      copyFromSignal();
     }
   }
 }
