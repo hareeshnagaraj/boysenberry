@@ -31,6 +31,11 @@ function addBorderToElement(currentElement){
   document.getElementById(currentElement.id).width = smallWidth;
 }
 
+
+function removeGif(){
+  $(".gifBox").remove();
+}
+
 /*
 Function to add border clases appropriately
 */
@@ -50,19 +55,24 @@ function parseDom(){
       addBorderToElement(all[i]);
     } 
   }
-
   chrome.runtime.sendMessage({status: 'finishedParsing'});
   console.log("finished");
 }
 
 /*
 Function to remove added classes
+Catch a typeerror
 */
 function removeClasses(selected){
-  selected.className = selected.className.replace("boysenBlue" , '' );
-  selected.className = selected.className.replace("boysenPurple" , '' );
-  selected.className = selected.className.replace("boysenRed" , '' );
-  selected.className = selected.className.replace("hoverEffect" , '' );
+    try{
+      selected.className = selected.className.replace("boysenBlue" , '' );
+      selected.className = selected.className.replace("boysenPurple" , '' );
+      selected.className = selected.className.replace("boysenRed" , '' );
+      selected.className = selected.className.replace("hoverEffect" , '' );
+    }
+    catch(e){
+      // console.log(e);
+    }
 }
 
 /*
@@ -78,7 +88,7 @@ function clearDom(){
     var element = all[i];
     elementID = element.id;
     var selected = document.getElementById(elementID);
-    if(selected !== null){
+    if(selected != null){
       removeClasses(selected);
     }
   }
@@ -87,7 +97,7 @@ function clearDom(){
   $('.popupWrap').addClass("bounceOutDown animated");
   setTimeout(function(){
       $('.popupWrap').removeClass("bounceInDown animated");
-      $(".popupWrap").remove();
+      // $(".popupWrap").detach();
     }, 3000);
 }
 

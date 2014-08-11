@@ -98,7 +98,18 @@ Display the current class
 	background-color: white;
 	opacity:0.9;
 }
-
+.gifBox{
+	position: fixed;
+	padding:20px;
+	top:20px;
+	right:20px;
+	text-align: left;
+	background-color: #c2406d;
+	color:white;
+	z-index: 2147483647;
+	width:100px;
+	height:100px;
+}
 .hoverEffect{
 	background-color: rgba(189, 42, 130, .5);
 }
