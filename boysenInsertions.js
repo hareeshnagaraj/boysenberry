@@ -7,6 +7,8 @@ boysenInsertions.js - content script
 -Capture mouse movement, and display x,y coordinates
 
 */
+$("#body").prepend("<link href='http://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>");
+
 var currentElement = "";
 var currentDetailedCSS = "";
 var currentShortCSS = "";
@@ -28,7 +30,8 @@ chrome.runtime.onMessage.addListener(
   if( request.action == "beginCopy"){
     copyFromSignal();
   }
-  if(request.action == "toggleDetails"){
+  if(request.action == "toggle_details"){
+    toggleCSS();
   }
 });
 
@@ -131,6 +134,21 @@ function appendBox(){
       $('.popupWrap').removeClass("bounceInDown animated");
     }, 3000);
     $(".popupTitle").removeClass("boysenRed");
+}
+
+/*
+Function to switch from dshor t to detailed CSS
+*/
+function toggleCSS(){
+  if(details === 0){
+    details = 1;
+    $("#show_details").html("(hide details)");
+    $("#boxClassBody").html(currentDetailedCSS);
+  }else{
+    details = 0;
+    $("#show_details").html("(show details)");
+    $("#boxClassBody").html(currentShortCSS);
+  }
 }
 
 /*

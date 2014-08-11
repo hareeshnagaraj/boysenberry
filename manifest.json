@@ -48,6 +48,14 @@
         "windows":"Alt+B"
         },
        "description": "toggle details"
+    },
+    "toggle_details":{
+      "suggested_key":{
+        "default":"Ctrl+I",
+        "mac":"Ctrl+I",
+        "windows":"Ctrl+I"
+        },
+       "description": "toggle details"
     }
   },
   "web_accessible_resources":[
