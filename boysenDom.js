@@ -106,6 +106,11 @@ function unbindMouse(){
   $("body").unbind("mousemove");
 }
 
+//add a loading display
+function showLoader(){
+  $("body").prepend('<div class="gifBox"></div>');
+}
+
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
   console.log(request);

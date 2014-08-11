@@ -108,7 +108,9 @@ function appendBox(){
                   } \
                 </div> \
               </div> \
-            </div>';
+            </div> \
+            ';
+            
     $("body").prepend(box);
     $(".popupWrap").draggable({handle:".popupTitle"});
     addCopyListener();
