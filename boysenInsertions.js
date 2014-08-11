@@ -164,9 +164,14 @@ function signalCopy(tobeCopied){
 Removes added classes
 */
 function stripClassName(string){
-  string = string.replace("boysenBlue","");
-  string = string.replace("boysenRed","");
-  string = string.replace("boysenPurple","");
+  try{
+    string = string.replace("boysenBlue","");
+    string = string.replace("boysenRed","");
+    string = string.replace("boysenPurple","");
+  }
+  catch(e){
+    
+  }
   return string;
 }
 /*
@@ -181,7 +186,8 @@ function updateBox(element){
     }
     elementID = element.id;
     var accessID = "#"+elementID;
-    if($(accessID) !== null){
+    var accesedElement = document.getElementById(element.id);
+    if(accesedElement !== null){
       var className = stripClassName($(accessID).attr('class'));
       var classCSS = $(accessID).getStyleObject();
       currentShortCSS = grabStyle(classCSS);
