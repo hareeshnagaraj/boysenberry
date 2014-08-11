@@ -107,8 +107,10 @@ Display the current class
 	background-color: #c2406d;
 	color:white;
 	z-index: 2147483647;
+	width:130px;
+}
+.gifBox > img{
 	width:100px;
-	height:100px;
 }
 .hoverEffect{
 	background-color: rgba(189, 42, 130, .5);

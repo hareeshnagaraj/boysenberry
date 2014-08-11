@@ -78,6 +78,7 @@ function check_input() {
 Adds the box to our page
 */
 function appendBox(){
+  $(".gifBox").remove();
   var box = '<div class="popupWrap"> \
               <div class="popupTitle"> \
                 <div class="popupTitleInner"> \
@@ -129,6 +130,7 @@ function appendBox(){
     setTimeout(function(){
       $('.popupWrap').removeClass("bounceInDown animated");
     }, 3000);
+    $(".popupTitle").removeClass("boysenRed");
 }
 
 /*
@@ -205,7 +207,7 @@ function updateBox(element){
       else{
         $("#boxClassBody").html(currentDetailedCSS);
       }
-      copyFromSignal();
+      // copyFromSignal();
     }
   }
 }

@@ -10,6 +10,8 @@ Fix alignment issues in certain websites, arises when adding border of 1 px
 Remove borders
 
 */
+var popupElements = ["popupWrap","popupWrap ui-draggable","popupTitle","popupTitleInner","popupClassDisplay","popupClassDisplayOuter","popupTitleDisplayModeToggle","popupClassDisplayBody","popupWrap ui-draggable ui-draggable-handle"];
+
 var isOpen = false;
 
 //parseDom used to parse the entire DOM and add the appropriate borders
@@ -19,6 +21,10 @@ function addBorderToElement(currentElement){
   var numChildren = currentElement.childNodes.length;
   var elementFromID = document.getElementById(currentElement.id);
   if(elementFromID === null){
+    return;
+  }
+  var found = $.inArray(elementFromID.className, popupElements) > -1;
+  if(found){
     return;
   }
   if(numChildren > 3){
@@ -45,6 +51,8 @@ function parseDom(){
   var all = document.getElementsByTagName("*");
   var max=all.length;
   var elementID;
+  var displayCounter = 0;
+
   for (var i=0; i < max; i++) {
     // Do something with the element here
     var element = all[i];
@@ -57,7 +65,8 @@ function parseDom(){
     }
   }
   chrome.runtime.sendMessage({status: 'finishedParsing'});
-  console.log("finished");
+  
+
 }
 
 /*
@@ -114,10 +123,12 @@ function showLoader(){
 
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
-  console.log(request);
   if (request.action == "beginParse"){
     if(!isOpen){
-      parseDom();
+      $("body").prepend('<div class="gifBox">boysening.</div>');
+      setTimeout(function(){
+        parseDom();
+      },300);
       isOpen = true;
     }
     else{

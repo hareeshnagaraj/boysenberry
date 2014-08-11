@@ -49,5 +49,8 @@
         },
        "description": "toggle details"
     }
-  }
+  },
+  "web_accessible_resources":[
+    "loading_gif.gif"
+  ]
 }
