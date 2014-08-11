@@ -17,18 +17,19 @@ function addBorderToElement(currentElement){
   var currentWidth = currentElement.clientWidth;
   var currentHeight = currentElement.clientHeight;
   var numChildren = currentElement.childNodes.length;
-  var smallWidth = currentElement.width - 2;
-
+  var elementFromID = document.getElementById(currentElement.id);
+  if(elementFromID == null){
+    return;
+  }
   if(numChildren > 3){
-      document.getElementById(currentElement.id).className += " boysenRed";
+      elementFromID.className += " boysenRed";
   }
   else if(numChildren > 2){
-     document.getElementById(currentElement.id).className += " boysenBlue";
+     elementFromID.className += " boysenBlue";
   }
   else if(numChildren > 0){
-     document.getElementById(currentElement.id).className += " boysenPurple";
+     elementFromID.className += " boysenPurple";
   }
-  document.getElementById(currentElement.id).width = smallWidth;
 }
 
 
@@ -49,11 +50,11 @@ function parseDom(){
     var element = all[i];
     elementID = element.id;
     if(!element.id){
-      element.id = "boysen"+Math.floor((Math.random() * 10000) + 1);
+      element.id = "boysen"+i;
     }
-    if(document.getElementById(element.id) != null){
-      addBorderToElement(all[i]);
-    } 
+    
+    addBorderToElement(all[i]);
+     
   }
   chrome.runtime.sendMessage({status: 'finishedParsing'});
   console.log("finished");
