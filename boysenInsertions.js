@@ -115,7 +115,7 @@ function appendBox(){
               <div class="popupClassDisplayOuter"> \
                 <h3 style="font-weight: bold;">Keyboard Shortcuts</h3> \
                 <div>Ctrl/Cmd + B to show/hide application</div> \
-                <div>Alt/Option + B to copy</div> \
+                <div>Alt/Option + B to copy current style</div> \
                 <div>Ctrl/Cmd + I to show/hide details</div> \
               </div> \
             </div> \
