@@ -47,7 +47,7 @@ function removeGif(){
 Function to add border clases appropriately
 */
 function parseDom(){
-  console.log("parseDom");
+  //console.log.log("parseDom");
   var all = document.getElementsByTagName("*");
   var max=all.length;
   var elementID;
@@ -81,7 +81,7 @@ function removeClasses(selected){
       selected.className = selected.className.replace("hoverEffect" , '' );
     }
     catch(e){
-      // console.log(e);
+      // //console.log.log(e);
     }
 }
 
@@ -89,7 +89,7 @@ function removeClasses(selected){
 Function to reset the borders and remove the box
 */
 function clearDom(){
-  console.log("clearDom");
+  //console.log.log("clearDom");
   var all = document.getElementsByTagName("*");
   var max=all.length;
   var elementID;

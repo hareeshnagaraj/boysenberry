@@ -29,7 +29,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
       chrome.tabs.executeScript(null, {file: "boysenDom.js"});
     }
     if( request.action == "copy"){
-      console.log("tobeCopied : " + request.string);
+      //console.log("tobeCopied : " + request.string);
       copy(request.string);
     }
     if(request.status == "finishedParsing"){
@@ -42,7 +42,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
 //keyboard shortcuts
 chrome.commands.onCommand.addListener(function(command) {
-  console.log('Command:', command);
+  //console.log('Command:', command);
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     if(command == "show_details"){
       chrome.tabs.sendMessage(tabs[0].id, {action: "beginParse"}, function(response) {

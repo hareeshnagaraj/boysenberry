@@ -18,14 +18,14 @@ var details = 0;
 
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendResponse) {
-  console.log(request);
+  ////console.log(request);
 	if (request.action == "finishedParsing"){
     appendBox();
     bindMouse();
 	}
   if( request.action == "message"){
     var message = request.message;
-    console.log(message);
+    //console.log(message);
   }
   if( request.action == "beginCopy"){
     copyFromSignal();
@@ -42,7 +42,7 @@ function bindMouse(){
     var offset = $(document).scrollTop();
     var x = event.pageX;
     var y = event.pageY - offset;
-    console.log(y);
+    //console.log(y);
     var element = document.elementFromPoint(x,y);
     var found = $.inArray(element.className, popupElements) > -1;
     if(!found){
@@ -71,10 +71,10 @@ function check_input() {
     if(input == secret) {
       //the code used to reveal mario and the world is then put here   
       chrome.runtime.sendMessage({action: "boysen"}, function(response) {
-        console.log(response.farewell);
+        //console.log(response.farewell);
       });
     }
-    console.log(input);
+    //console.log(input);
 }
 
 /*
@@ -172,7 +172,7 @@ function copyFromSignal(){
   var string = $("#boxClassBody").html();
   string = string.replace(/<br>/g,"\n");
   signalCopy(string);
-  console.log("copySent");
+  //console.log("copySent");
 }
 
 function resetCopy(){
@@ -181,7 +181,7 @@ function resetCopy(){
 
 function signalCopy(tobeCopied){
  chrome.runtime.sendMessage({action: "copy",string:tobeCopied}, function(response) {
-    console.log(response.farewell);
+    //console.log(response.farewell);
   });
  $("#copy_style").html("(copied!)");
  setTimeout(function(){resetCopy();}, 3000);
