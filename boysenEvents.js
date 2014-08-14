@@ -5,6 +5,7 @@ boysenEvents.js
 */
 
 /*
+
 Function to copy 
 */
 function copy(tobeCopied){
